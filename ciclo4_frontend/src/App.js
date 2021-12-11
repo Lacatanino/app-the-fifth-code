@@ -6,6 +6,7 @@ import Nproyecto from './components/proyectos/proyecto_nuevo/nuevoProyecto'
 import Home from './components/Home/home'
 import NavBar from './components/nav/nav'
 import ListaProductos from './components/proyectos/listarProyectos/listarProyectos'
+import ActivarProyecto from './components/proyectos/proyecto_nuevo/editarProyecto'
 
 import {
   ApolloProvider,
@@ -34,10 +35,17 @@ function App() {
            <ListaProductos/>
         </ApolloProvider>  
       </Route>
+      
       <Route path="/Nproyecto" exact>
         <NavBar pagina={"/Nproyecto"}/>
         <ApolloProvider client={client}>
           <Nproyecto/>
+        </ApolloProvider> 
+      </Route>
+      <Route path="/editarProyecto" exact>
+        <NavBar pagina={"/editarProyecto"}/>
+        <ApolloProvider client={client}>
+            <ActivarProyecto/>
         </ApolloProvider> 
       </Route>
       </Switch>

@@ -1,7 +1,6 @@
 
 import React from "react";
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   gql, useMutation
 } from "@apollo/client";
@@ -41,6 +40,7 @@ const FormProyecto =()=>{
     status: " ",
     leader_id:" "
   }
+  
 
         return(
           <form onSubmit={e => {
@@ -57,34 +57,34 @@ const FormProyecto =()=>{
           }})}}>
 
 <div>
-                <label>Nombre Proyecto</label>
+                <label class="p-3">Nombre Proyecto</label>
                 <input ref={name => proyecto.name = name} placeholder="Nombre" />
             </div>
             <div>
-                <label>Objetivos</label>
+                <label class="p-3">Objetivos</label>
                 <input ref={generalObjective => proyecto.generalObjective = generalObjective} placeholder="Objetivos" />
             </div>
             <div>
-                <label>Objetivos especificos</label>
+                <label class=" p-3">Objetivos especificos</label>
                 <input ref={specificObjectives => proyecto.specificObjectives = specificObjectives} placeholder="Objetivos generales" />
             </div>
             <div>
-                <label>fecha inicial</label>
+                <label class="p-3">fecha inicial</label>
                 <input type="date" ref={startDate => proyecto.startDate = startDate} placeholder="fecha inicial" />
             </div>
             <div>
-                <label>fecha final</label>
+                <label class="p-3" >fecha final</label>
                 <input type="date" ref={endDate => proyecto.endDate = endDate} placeholder="fecha final" />
             </div>
             <div>
-                <label>Lider</label>
+                <label class="p-3">Lider</label>
                 <input ref={leader_id => proyecto.leader_id = leader_id} placeholder="Lider" />
             </div>
             <div>
-                <label>Presupuesto</label>
+                <label class="p-3">Presupuesto</label>
                 <input ref={budget => proyecto.budget = budget} placeholder="Presupuesto" />
             </div>
-            <div><button type="submit">Registrar Proyecto</button></div>
+            <div><button class="bg-primary ml-4"type="submit">Registrar Proyecto</button></div>
         </form>
         )
 }

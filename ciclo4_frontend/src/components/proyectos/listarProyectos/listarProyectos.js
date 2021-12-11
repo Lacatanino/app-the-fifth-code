@@ -8,16 +8,10 @@
   // import Tabla from './Tabla';
   import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider,
     useQuery,
     gql
   } from "@apollo/client";
-  const client = new ApolloClient({
-    uri: 'http://localhost:9091/consulta',
-    cache: new InMemoryCache()
-  }); 
+
   
   const Proyectos =()=>{
     const {loading,error,data} = useQuery(gql`
@@ -91,9 +85,9 @@ class ListaProductos extends Component {
                             <Button variant="primary">Nuevo Proyecto</Button>
                         </Link>
                     </ButtonToolbar>
-                    <ApolloProvider client={client}>
-                        <Proyectos/>
-                    </ApolloProvider>
+                    
+                    <Proyectos/>
+                    
                     
                 </Row> 
             </Container>

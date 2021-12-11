@@ -7,6 +7,16 @@ import Home from './components/Home/home'
 import NavBar from './components/nav/nav'
 import ListaProductos from './components/proyectos/listarProyectos/listarProyectos'
 
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+} from "@apollo/client";
+const client = new ApolloClient({
+  uri: 'http://localhost:9091/consulta',
+  cache: new InMemoryCache()
+}); 
+
 
 function App() {
   return (
@@ -20,11 +30,15 @@ function App() {
       </Route>
       <Route path="/proyectos" exact>
         <NavBar pagina={"/proyectos"}/>
-        <ListaProductos/>
+        <ApolloProvider client={client}>
+           <ListaProductos/>
+        </ApolloProvider>  
       </Route>
       <Route path="/Nproyecto" exact>
         <NavBar pagina={"/Nproyecto"}/>
-        <Nproyecto/>
+        <ApolloProvider client={client}>
+          <Nproyecto/>
+        </ApolloProvider> 
       </Route>
       </Switch>
     </Router>

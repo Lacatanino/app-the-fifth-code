@@ -44,7 +44,8 @@ const FormProyecto =()=>{
 
         return(
           <form onSubmit={e => {
-            e.preventDefault();
+            e.preventDefault(proyecto.startDate.value);
+            console.log(proyecto.startDate.value);
             creadorDeProyectos({variables:{
               name: proyecto.name.value,
               generalObjective: proyecto.generalObjective.value,
@@ -65,7 +66,7 @@ const FormProyecto =()=>{
                 <input ref={generalObjective => proyecto.generalObjective = generalObjective} placeholder="Objetivos" />
             </div>
             <div>
-                <label class=" p-3">Objetivos especificos</label>
+                <label class="p-3">Objetivos especificos</label>
                 <input ref={specificObjectives => proyecto.specificObjectives = specificObjectives} placeholder="Objetivos generales" />
             </div>
             <div>

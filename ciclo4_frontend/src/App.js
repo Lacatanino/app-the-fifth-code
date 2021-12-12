@@ -7,7 +7,7 @@ import Home from './components/Home/home'
 import NavBar from './components/nav/nav'
 import ListaProductos from './components/proyectos/listarProyectos/listarProyectos'
 import ActivarProyecto from './components/proyectos/proyecto_nuevo/editarProyecto'
-
+import ListaProductoFiltro from'./components/proyectos/listarProyectos/listarUno'
 import {
   ApolloProvider,
   ApolloClient,
@@ -35,7 +35,12 @@ function App() {
            <ListaProductos/>
         </ApolloProvider>  
       </Route>
-      
+      <Route path="/proyectos/:name" exact>
+        <NavBar pagina={"/proyectos"}/>
+        <ApolloProvider client={client}>
+           <ListaProductoFiltro/>
+        </ApolloProvider>  
+      </Route>
       <Route path="/Nproyecto" exact>
         <NavBar pagina={"/Nproyecto"}/>
         <ApolloProvider client={client}>

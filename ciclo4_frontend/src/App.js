@@ -7,6 +7,9 @@ import Home from './components/Home/home'
 import NavBar from './components/nav/nav'
 import ListaProductos from './components/proyectos/listarProyectos/listarProyectos'
 import ActivarProyecto from './components/proyectos/proyecto_nuevo/editarProyecto'
+import ListaAvances from './components/avances/listaAvances'
+import Avances from './components/avances/formAvances'
+import NAvances from './components/avances/addAvance'
 
 import {
   ApolloProvider,
@@ -48,8 +51,13 @@ function App() {
             <ActivarProyecto/>
         </ApolloProvider> 
       </Route>
+      <Route path="/NAvances" exact>
+        <NavBar pagina={"/NAvances"}/>
+        <NAvances/>
+      </Route>
       </Switch>
     </Router>
+    
   );
 }
 

@@ -8,7 +8,9 @@
   // import Tabla from './Tabla';
   import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
   import { useParams } from "react-router-dom";
-
+  import ButtonGroup from 'react-bootstrap/ButtonGroup'
+  import { FaSearch} from "react-icons/fa";
+  import { GoCheck,GoPencil,GoPlus } from "react-icons/go";
 import {
     useQuery,
     gql,useMutation
@@ -18,12 +20,20 @@ import {
         activeProyecto(name:$name)
        }
 `;
+const MUTATION_PROYECTO_FASE=gql`
+  mutation updatePhaseProyectos($name: String,$phase: String){
+    updatePhaseProyectos(name:$name, phase:$phase)
+       }
+`;
   
   const Proyectos =()=>{
     
     const [count, setCount] = useState(" ");
+    const [fase, setFase] = useState(" ");
+    const [nombre1, setNombre] = useState(" ");
     let nombre="";
     const[activadorDeProyectos] = useMutation(MUTATION_PROYECTO_EDITAR);
+    const[updatePhaseProyectos] = useMutation(MUTATION_PROYECTO_FASE);
     
     let Activarproyecto ={
       name: " "
@@ -36,9 +46,24 @@ import {
         console.log('You clicked submit.'+count);
         window.location.reload(true);
       }
+      function handleSubmit1(e) {
+        e.preventDefault();
+        updatePhaseProyectos({
+            variables: {
+                name: nombre1,
+                phase: fase
+            }
+        })
+        console.log(fase);
+        console.log(nombre1);
+        // console.log('You clicked ident.' + ident);
+        // console.log('You clicked estado.' + estado);
+        window.location.reload(true);
+    }
     const {loading,error,data} = useQuery(gql`
         {
             proyectos{
+                _id,
                 name
                 generalObjective
                 specificObjectives
@@ -47,28 +72,47 @@ import {
                 endDate
                 leader_id
                 status
+                phase
             }
         }
     `)
 
     if(loading) return "<h1>Cargando</h1>"
-    const datosTabla = data.proyectos.map(({name,generalObjective,specificObjectives,budget,startDate,endDate,leader_id,status})=>(
+    const datosTabla = data.proyectos.map(({_id,name,generalObjective,specificObjectives,budget,startDate,endDate,leader_id,status,phase})=>(
         <tr key={name}>
             <td>{name}</td>
             <td>{generalObjective}</td>
-            <td>{budget}</td>
-            <td>{startDate}</td> 
-            <td>{endDate}</td>
+            {/* <td>{budget}</td> */}
+            {/* <td>{startDate}</td>  */}
+            {/* <td>{endDate}</td> */}
             <td>{leader_id}</td>
             <td>{status}</td>
+            <td>{phase}</td>
+            <td> <Link to={`/añadir/${name}`}>
+                    <Button className="m-1 pr-2" variant="primary"><GoPlus/></Button>
+                </Link></td>
+            <td>
+                <form onSubmit={handleSubmit1}>
+                <ButtonGroup aria-label="Basic example">
+                    <Button className="p-1 "type="submit" onClick={() => [setFase("Iniciado"), setNombre(name)]} variant="info">Iniciar</Button>
+                    <Button className="p-1"type="submit" onClick={() => [setFase("En desarrollo"), setNombre(name)]} variant="secondary">desarrollo</Button>
+                    <Button className="p-1"type="submit" onClick={() => [setFase("Finalizado"), setNombre(name)]} variant="success">finalizado</Button>
+                </ButtonGroup>
+                </form>
+            </td>
             <td>
             <form onSubmit={handleSubmit}>
-                <Button type="submit"onClick={() => setCount(name)} variant="warning">Activar Proyecto</Button>
+                <Button type="submit"onClick={() => setCount(name)}className="pr-2" variant="warning"><GoCheck/></Button>
             </form>   
             </td>
             <td><Link to={`/proyectos/${name}`}>
-                    <Button variant="warning">ir</Button>
-                </Link></td>
+                    <Button className="m-1" variant="primary"><FaSearch/></Button>
+                </Link>
+            </td>
+            <td><Link to={`/editarProyecto/${_id}`}>
+                    <Button variant="danger"><GoPencil/></Button>
+                </Link>
+            </td>
         </tr> 
       )
       );
@@ -99,11 +143,14 @@ import {
                 <tr>
                 <th>Nombre</th>
                 <th>Objetivo General</th>
-                <th>Presupuesto</th>
-                <th>Fecha Inicio</th>
-                <th>Fecha Final</th>
                 <th>Lider</th>
                 <th>Status</th>
+                <th>Fase del proyecto</th>
+                <th>Añadir integrantes</th>
+                <th>Actualizar Fase</th>
+                <th>Activar</th>
+                <th>consultar</th>
+                <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -125,7 +172,7 @@ class ListaProductos extends Component {
                         aria-label="Toolbar with Button groups"
                         >
                         <Link to="/Nproyecto">
-                            <Button variant="primary">Nuevo Proyecto</Button>
+                            <Button variant="primary">Nuevo proyecto</Button>
                         </Link>
                     </ButtonToolbar>
                     

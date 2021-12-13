@@ -79,7 +79,7 @@ const FormProyecto =()=>{
             </div>
             <div>
                 <label class="p-3">Lider</label>
-                <input ref={leader_id => proyecto.leader_id = leader_id} placeholder="Lider" />
+                <input ref={leader_id => proyecto.leader_id = leader_id} placeholder="@ correo del lider" />
             </div>
             <div>
                 <label class="p-3">Presupuesto</label>

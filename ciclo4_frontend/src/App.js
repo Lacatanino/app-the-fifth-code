@@ -6,7 +6,8 @@ import Nproyecto from './components/proyectos/proyecto_nuevo/nuevoProyecto'
 import Home from './components/Home/home'
 import NavBar from './components/nav/nav'
 import ListaProductos from './components/proyectos/listarProyectos/listarProyectos'
-import ActivarProyecto from './components/proyectos/proyecto_nuevo/editarProyecto'
+import EditarProyecto from './components/proyectos/proyecto_nuevo/editarProyecto'
+import AñadirIntegrantes from './components/proyectos/proyecto_nuevo/añadirIntegrantes'
 import ListaProductoFiltro from'./components/proyectos/listarProyectos/listarUno'
 import {
   ApolloProvider,
@@ -47,10 +48,16 @@ function App() {
           <Nproyecto/>
         </ApolloProvider> 
       </Route>
-      <Route path="/editarProyecto" exact>
+      <Route path="/editarProyecto/:_id" exact>
         <NavBar pagina={"/editarProyecto"}/>
         <ApolloProvider client={client}>
-            <ActivarProyecto/>
+            <EditarProyecto/>
+        </ApolloProvider> 
+      </Route>
+      <Route path="/añadir/:_id" exact>
+        <NavBar pagina={"/añadir"}/>
+        <ApolloProvider client={client}>
+            <AñadirIntegrantes/>
         </ApolloProvider> 
       </Route>
       </Switch>

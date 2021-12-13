@@ -9,6 +9,11 @@ const NavBar = ({ pagina}) => {
         <Nav.Item>
             <Nav.Link href="/proyectos" eventKey="/proyectos">PROYECTOS</Nav.Link>
         </Nav.Item>
+
+        <Nav.Item>
+            <Nav.Link href="/IngresoIncricion">INSCRIPCIONES</Nav.Link>
+        </Nav.Item>
+
         </Nav>
 
     );

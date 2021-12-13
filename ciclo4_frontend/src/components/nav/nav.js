@@ -9,10 +9,9 @@ const NavBar = ({ pagina}) => {
         <Nav.Item>
             <Nav.Link href="/proyectos" eventKey="/proyectos">PROYECTOS</Nav.Link>
         </Nav.Item>
-        </Nav>
 
         <Nav.Item>
-            <Nav.Link href="/Listaavances" eventKey="/Listaavances">AVANCES</Nav.Link>
+            <Nav.Link href="/Listaravances" eventKey="/Listaravances">AVANCES</Nav.Link>
         </Nav.Item>
         </Nav>
 

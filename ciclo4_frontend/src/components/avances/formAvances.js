@@ -1,48 +1,69 @@
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-//import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import { Link } from 'react-router-dom';
 
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom'; 
+import ListarAvances from "./verAvances";
+import {
+  gql, useMutation
+} from "@apollo/client";
+
+const MUTATION_AVANCE = gql`
+  mutation createAvance($project_id: String,$addDate: Date,$description: String,$observations: String){
+          createAvance(Avance: {project_id: $project_id,addDate: $addDate,description: $description,observations: $observations})
+       }
+`;
 
 const FormAvances =()=>{
-    return(
-       <Form>
-           <div className ="container">
-            <Form.Group className="mb-3 mt-4" controlId="formGridID">
-                <Form.Label>ID Proyecto</Form.Label>
-                <Form.Control placeholder="Digite el ID del proyecto"/>
-                </Form.Group>
+  const[creadorDeAvances] = useMutation(MUTATION_AVANCE);
+  let Avance ={
+    project_id: " ",
+    addDate:" ",
+    description: " ",
+    observations: " "
+  }
+  
 
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridFecha">
-                        <Form.Label>Fecha</Form.Label>
-                        <Form.Control type="date" />
-                    </Form.Group>
-                </Row>
+        return(
+          <form onSubmit={e => {
+            e.preventDefault();
+            console.log(Avance.project_id+''+Avance.addDate+''+Avance.description+''+Avance.observations);
+            creadorDeAvances({variables:{
+              project_id: Avance.project_id.value,
+              addDate: Avance.addDate.value,
+              description: Avance.description.value,
+              observations: Avance.observations.value
+          }})}}>
 
-                <Form.Group className="mb-3" controlId="formGridDescription">
-                <Form.Label>Descripción</Form.Label>
-                <Form.Control placeholder="Ingrese la descripción del avance"/>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formGridObservations">
-                <Form.Label>Observaciones</Form.Label>
-                <Form.Control placeholder="Ingrese las observaciones del avance"/>
-                </Form.Group>
+        
+            <div>
+                <label className="p-3">Nombre Proyecto</label>
+                <input ref={project_id => Avance.project_id = project_id} placeholder="Nombre" />
             </div>
-            <div className ="col text-center">
-            <Link to="">
-                <Button className="col-sm-6" variant="primary" type="submit">
-                    Ingresar Avance
-                </Button>
-            </Link>
+            <div>
+                <label className="p-3">Fecha</label>
+                <input type="date" ref={addDate => Avance.addDate = addDate} placeholder="Fecha" />
             </div>
-
-       </Form> 
-
-    )
+            <div>
+                <label className=" p-3">Descripción</label>
+                <input ref={description => Avance.description = description} placeholder="Descripción" />
+            </div>
+            <div>
+                <label className=" p-3">Observaciones</label>
+                <input ref={observations => Avance.observations = observations} placeholder="Observaciones" />
+            </div>
+        
+        <br/>   
+        <div className="text-center justify-content-center align-items-center">
+            <div><button className="bg-primary ml-4"type="submit">Registrar Avance</button></div>
+            <div>
+              <br/>
+            <Link to="./ListarAvances">
+                    <Button variant="warning">Volver</Button>
+                </Link>
+              </div>
+        </div>
+        </form>
+        )
 }
-
 export default FormAvances;

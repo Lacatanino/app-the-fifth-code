@@ -7,9 +7,11 @@ import Home from './components/Home/home'
 import NavBar from './components/nav/nav'
 import ListaProductos from './components/proyectos/listarProyectos/listarProyectos'
 import ActivarProyecto from './components/proyectos/proyecto_nuevo/editarProyecto'
-import ListaAvances from './components/avances/listaAvances'
-import Avances from './components/avances/formAvances'
-import NAvances from './components/avances/addAvance'
+import ListarAvances from './components/avances/verAvances'
+import NAvance from './components/avances/nuevoAvance'
+import CreateAvance from './components/avances/avanceCreado'
+import FormAvances from './components/avances/formAvances';
+import EditAvance from './components/avances/editarAvances';
 
 import {
   ApolloProvider,
@@ -51,10 +53,42 @@ function App() {
             <ActivarProyecto/>
         </ApolloProvider> 
       </Route>
-      <Route path="/NAvances" exact>
-        <NavBar pagina={"/NAvances"}/>
-        <NAvances/>
+      
+      <Route path="/ListarAvances" exact>
+        <NavBar pagina={"/ListarAvances"}/>
+        <ApolloProvider client={client}>
+          <ListarAvances/>
+        </ApolloProvider>
       </Route>
+
+      <Route path="/NuevoAvance" exact>
+        <NavBar pagina={"/NuevoAvance"}/>
+        <ApolloProvider client={client}>
+          <NAvance/>
+        </ApolloProvider>
+      </Route>
+
+      <Route path="/formAvances" exact>
+        <NavBar pagina={"/formAvances"}/>
+        <ApolloProvider client={client}>
+          <FormAvances/>
+        </ApolloProvider>
+      </Route>
+
+      <Route path="/AvanceCreado" exact>
+        <NavBar pagina={"/AvanceCreado"}/>
+        <ApolloProvider client={client}>
+            <CreateAvance/>
+        </ApolloProvider> 
+      </Route>       
+
+      <Route path="/EditarAvances/:project_id" exact>
+        <NavBar pagina={"/EditarAvances/"}/>
+        <ApolloProvider client={client}>
+            <EditAvance/>
+        </ApolloProvider>
+      </Route>                                                                                                                                    
+
       </Switch>
     </Router>
     

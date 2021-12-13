@@ -14,6 +14,11 @@ import NuevoUsuario from './components/usuarios/nuevoUsuario/nuevoUsuario'
 import EditarUsuario from './components/usuarios/editarUsuario/editarUsuario'
 import Login from './components/login/login'
 import RegistrarUsuario from './components/usuarios/nuevoUsuario/registrarUsuario'
+import ListarAvances from './components/avances/verAvances'
+import NAvance from './components/avances/nuevoAvance'
+import CreateAvance from './components/avances/avanceCreado'
+import FormAvances from './components/avances/formAvances'
+import EditAvance from './components/avances/editarAvances'
 import {
   ApolloProvider,
   ApolloClient,
@@ -91,6 +96,36 @@ function App() {
             <RegistrarUsuario />
           </ApolloProvider>
         </Route>
+        <Route path="/ListarAvances" exact>
+        <NavBar pagina={"/ListarAvances"}/>
+        <ApolloProvider client={client}>
+          <ListarAvances/>
+        </ApolloProvider>
+      </Route>
+      <Route path="/NuevoAvance" exact>
+        <NavBar pagina={"/NuevoAvance"}/>
+        <ApolloProvider client={client}>
+          <NAvance/>
+        </ApolloProvider>
+      </Route>
+      <Route path="/formAvances" exact>
+        <NavBar pagina={"/formAvances"}/>
+        <ApolloProvider client={client}>
+          <FormAvances/>
+        </ApolloProvider>
+      </Route>
+      <Route path="/AvanceCreado" exact>
+        <NavBar pagina={"/AvanceCreado"}/>
+        <ApolloProvider client={client}>
+            <CreateAvance/>
+        </ApolloProvider> 
+      </Route>       
+      <Route path="/EditarAvances/:project_id" exact>
+        <NavBar pagina={"/EditarAvances/"}/>
+        <ApolloProvider client={client}>
+            <EditAvance/>
+        </ApolloProvider>
+      </Route>
       </Switch>
     </Router>
   );

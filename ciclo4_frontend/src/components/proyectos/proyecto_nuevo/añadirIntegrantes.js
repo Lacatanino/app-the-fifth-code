@@ -70,9 +70,10 @@ const Proyectos= () => {
                 <div>
                     <label class="p-3">Añadir integrante:</label>
                     <input type="text" ref={identification=> proyecto.identification = identification} placeholder="Identificación persona" />
+                    <label>Para añadir integrantes al proyecto la persona dede estar con estado Autorizado</label>
                 </div>
                 <div>
-                    <button class="bg-info" type="submit">Añadir Integrante</button>
+                    <button class="mt-2 bg-info" type="submit">Añadir Integrante</button>
                 </div>
             </div>
         </form>

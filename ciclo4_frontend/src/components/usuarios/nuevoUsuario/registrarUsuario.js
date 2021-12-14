@@ -48,22 +48,22 @@ const RegistrarUsuario = () => {
                 <div>
                     <div>
                         <label>Nombre del Usuario:</label>
-                        <input style={{ width: "300px" }} type="text" ref={fullName => usuario.fullName = fullName} placeholder="Nombre del Usuario" />
+                        <input style={{ width: "300px" }} type="text" ref={fullName => usuario.fullName = fullName} placeholder="Nombre del Usuario" required/>
                     </div>
                     &nbsp;
                     <div>
                         <label>Identificación:</label>
-                        <input type="text" ref={identification => usuario.identification = identification} placeholder="Identificación" />
+                        <input type="text" ref={identification => usuario.identification = identification} placeholder="Identificación" required/>
                     </div>
                     &nbsp;
                     <div>
                         <label>Email:</label>
-                        <input style={{ width: "250px" }} type="text" ref={email => usuario.email = email} placeholder="Email" />
+                        <input style={{ width: "250px" }} type="text" ref={email => usuario.email = email} placeholder="Email" required/>
                     </div>
                     &nbsp;
                     <div>
                         <label>Contraseña:</label>
-                        <input type="password" ref={password => usuario.password = password} placeholder="Contraseña" />
+                        <input type="password" ref={password => usuario.password = password} placeholder="Contraseña" required/>
                     </div>
                     &nbsp;
                     <div>

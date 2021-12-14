@@ -55,35 +55,37 @@ const FormProyecto =()=>{
               endDate: proyecto.endDate.value,
               status: proyecto.status.value,
               leader_id: proyecto.leader_id.value
-          }})}}>
+          }})
+          window.location.href = '/proyectos';
+          }}>
 
 <div>
                 <label class="p-3">Nombre Proyecto</label>
-                <input ref={name => proyecto.name = name} placeholder="Nombre" />
+                <input ref={name => proyecto.name = name} placeholder="Nombre" required/>
             </div>
             <div>
                 <label class="p-3">Objetivos</label>
-                <input ref={generalObjective => proyecto.generalObjective = generalObjective} placeholder="Objetivos" />
+                <input ref={generalObjective => proyecto.generalObjective = generalObjective} placeholder="Objetivos" required/>
             </div>
             <div>
                 <label class="p-3">Objetivos especificos</label>
-                <input ref={specificObjectives => proyecto.specificObjectives = specificObjectives} placeholder="Objetivos generales" />
+                <input ref={specificObjectives => proyecto.specificObjectives = specificObjectives} placeholder="Objetivos generales" required/>
             </div>
             <div>
                 <label class="p-3">fecha inicial</label>
-                <input type="date" ref={startDate => proyecto.startDate = startDate} placeholder="fecha inicial" />
+                <input type="date" ref={startDate => proyecto.startDate = startDate} placeholder="fecha inicial" required/>
             </div>
             <div>
                 <label class="p-3" >fecha final</label>
-                <input type="date" ref={endDate => proyecto.endDate = endDate} placeholder="fecha final" />
+                <input type="date" ref={endDate => proyecto.endDate = endDate} placeholder="fecha final" required/>
             </div>
             <div>
                 <label class="p-3">Lider</label>
-                <input ref={leader_id => proyecto.leader_id = leader_id} placeholder="@ correo del lider" />
+                <input ref={leader_id => proyecto.leader_id = leader_id} placeholder="@ correo del lider" required/>
             </div>
             <div>
                 <label class="p-3">Presupuesto</label>
-                <input ref={budget => proyecto.budget = budget} placeholder="Presupuesto" />
+                <input ref={budget => proyecto.budget = budget} placeholder="Presupuesto" required/>
             </div>
             <div><button class="bg-primary ml-4"type="submit">Registrar Proyecto</button></div>
         </form>

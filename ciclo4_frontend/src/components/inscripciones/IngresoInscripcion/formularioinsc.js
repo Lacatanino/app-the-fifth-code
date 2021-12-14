@@ -51,34 +51,33 @@ const FormProyecto =()=>{
               egressDate:inscripcion.egressDate.value,
               
               
-          }})}}>
+          }})
+          window.location.href = '/ConsultaEstudiante';
+          }}>
  <div className="text-center mt-4">
                   <h1 >Nueva inscripción</h1>
                 </div>
 <div className="text-center mt-4">
   
                 <label   class="p-3">Nombre Proyecto</label>
-                <input ref={project_id =>inscripcion.project_id = project_id} placeholder="Proyecto" />
+                <input ref={project_id =>inscripcion.project_id = project_id} placeholder="Proyecto" required/>
             </div>
             <div className="text-center mt-4">
                 <label  class="p-3">Correo del usuario</label>
-                <input ref={user_id => inscripcion.user_id = user_id} placeholder="usuario" />
+                <input ref={user_id => inscripcion.user_id = user_id} placeholder="usuario" required/>
             </div>
             
             <div className="text-center mt-4">
                 <label  class="p-3">fecha inicial</label>
-                <input type="date" ref={enrollmentDate => inscripcion.enrollmentDate =enrollmentDate} placeholder="fecha inicial" />
+                <input type="date" ref={enrollmentDate => inscripcion.enrollmentDate =enrollmentDate} placeholder="fecha inicial" required/>
             </div>
             <div className="text-center mt-4">
                 <label class="p-3">fecha final</label>
-                <input type="date" ref={egressDate => inscripcion.egressDate = egressDate} placeholder="fecha final" />
+                <input type="date" ref={egressDate => inscripcion.egressDate = egressDate} placeholder="fecha final" required/>
             </div>
             
-            <div class="text-center"><button type="submit" >Registrar </button>
-            <Link to="/ConsultaEstudiante">
-                            <Button variant="success">Ver inscripciones</Button>
-                            
-                        </Link>
+            <div class="text-center "><button class="bg-success"type="submit" >Registrar </button>
+
             </div>
             
         </form>

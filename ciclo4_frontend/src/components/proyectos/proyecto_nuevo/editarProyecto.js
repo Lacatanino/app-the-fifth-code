@@ -71,22 +71,22 @@ const Proyectos= () => {
             <div className="text-center justify-content-center align-items-center">
                 <div> 
                     <label>Nombre:</label>
-                    <input style={{width: "300px"}} defaultValue={name} type="text" ref={name => proyecto.name = name} placeholder="Nombre del Usuario" />
+                    <input style={{width: "300px"}} defaultValue={name} type="text" ref={name => proyecto.name = name} placeholder="Nombre del Usuario" required/>
                 </div>
                 &nbsp;
                 <div>
                     <label>generalObjective:</label>
-                    <input defaultValue={generalObjective} type="text" ref={generalObjective => proyecto.generalObjective = generalObjective} placeholder="Identificación" />
+                    <input defaultValue={generalObjective} type="text" ref={generalObjective => proyecto.generalObjective = generalObjective} placeholder="Identificación" required/>
                 </div>
                 &nbsp;
                 <div>
                     <label>specificObjectives:</label>
-                    <input style={{width: "250px"}} defaultValue={specificObjectives} type="text" ref={specificObjectives => proyecto.specificObjectives = specificObjectives} placeholder="Email" />
+                    <input style={{width: "250px"}} defaultValue={specificObjectives} type="text" ref={specificObjectives => proyecto.specificObjectives = specificObjectives} placeholder="Email" required/>
                 </div>
                 &nbsp;
                 <div>
                     <label>Presupuesto:</label>
-                    <input defaultValue={budget} type="text" ref={budget => proyecto.budget = budget} placeholder="Contraseña" />
+                    <input defaultValue={budget} type="text" ref={budget => proyecto.budget = budget} placeholder="Contraseña" required/>
                 </div>
                 <div>
                     <button variant="primary" type="submit">Actualizar</button>

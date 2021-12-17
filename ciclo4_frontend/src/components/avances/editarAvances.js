@@ -18,8 +18,8 @@ const client = new ApolloClient({
 });
 
 const MUTATION_AVANCE_EDITAR = gql`
-    mutation updateAvance($project_id:ID, $addDate:Date, $description:String, $observations:String){
-        updateAvance(project_id:$project_id, addDate:$addDate, description:$description, observations:$observations)
+    mutation updateAvance($project_id:String, $description:String, $observations:String){
+        updateAvance(project_id:$project_id, description:$description, observations:$observations)
     }
 `;
 
@@ -50,44 +50,40 @@ const Avances = () => {
     console.log(data);
 
     if (loading) return "<h1>Cargando</h1>"
-    let avances = data.avances.filter(function (u) { return u.project_id === project_id}).map(({ project_id, addDate, description, observations }) => (
+    let avances = data.avances.filter(function (u) { return u.project_id === project_id}).map(({ project_id, description, observations }) => (
         <form onSubmit={e => {
             e.preventDefault();
             actualizarAvance({
                 variables: {
                     project_id: avance.project_id.value,
-                    addDate: avance.addDate.value,
                     description: avance.description.value,
                     observations: avance.observations.value
                 }
             })
-            window.location.href = '/avances';
+            window.location.href = '/ListarAvances';
+            console.log(avance.observations.value)
+
         }} >
             <div className="text-center justify-content-center align-items-center">
                 <div>
-                    <label>Nombre del Proyecto:</label>
-                    <input style={{ backgroundColor: "#c9c9c9" }} defaultValue={project_id} type="text" ref={project_id => avances.project_id = project_id} placeholder="Nombre del proyecto" />
+                    <label className="p-3">Nombre del Proyecto:</label>
+                    <input style={{ backgroundColor: "#c9c9c9" }} defaultValue={project_id} type="text" ref={project_id => avance.project_id = project_id} placeholder="Nombre del proyecto" readOnly />
                 </div>
                 &nbsp;
                 <div>
-                    <label class="p-3">Fecha:</label>
-                    <input defaultValue={Date} type="date" ref={addDate => avances.addDate = addDate} placeholder="Fecha" />
+                    <label className="p-3">Descripción:</label>
+                    <input style={{width: "250px"}} defaultValue={description} type="text" ref={description => avance.description = description} placeholder="Descripción" required />
                 </div>
                 &nbsp;
                 <div>
-                    <label>Descripción:</label>
-                    <input style={{width: "250px"}} defaultValue={description} type="text" ref={description => avances.description = description} placeholder="Descripción" />
-                </div>
-                &nbsp;
-                <div>
-                    <label>Observaciones:</label>
-                    <input style={{width: "250px"}} defaultValue={observations} type="text" ref={observations => avances.observations = observations} placeholder="Observaciones" />
+                    <label className="p-3">Observaciones:</label>
+                    <input style={{width: "250px"}} defaultValue={observations} type="text" ref={observations => avance.observations = observations} placeholder="Observaciones" required />
                 </div>
                 </div>
                 <div className="text-center justify-content-center align-items-center">
                 &nbsp;
                 <div>
-                    <button className="bg-primary ml-4" type="submit">Actualizar</button>
+                    <Button className="bg-primary ml-4" type="submit">Actualizar</Button>
                 </div>
                 </div>
             
@@ -110,6 +106,7 @@ class EditAvance extends Component {
                         style={{ display: 'flex', justifyContent: 'flex-end' }}
                         aria-label="Toolbar with Button groups"
                     >
+                        <div className="text-center justify-content-center align-items-center"></div> 
                         <Link to="/nuevoAvance">
                             <Button variant="primary">Nuevo Avance</Button>
                         </Link>

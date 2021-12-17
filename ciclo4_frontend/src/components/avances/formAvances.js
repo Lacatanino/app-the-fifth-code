@@ -9,8 +9,8 @@ import {
 } from "@apollo/client";
 
 const MUTATION_AVANCE = gql`
-  mutation createAvance($project_id: String,$addDate: Date,$description: String,$observations: String){
-          createAvance(Avance: {project_id: $project_id,addDate: $addDate,description: $description,observations: $observations})
+  mutation createAvance($project_id: String,$description: String,$observations: String){
+          createAvance(Avance: {project_id: $project_id,description: $description,observations: $observations})
        }
 `;
 
@@ -33,37 +33,41 @@ const FormAvances =()=>{
               addDate: Avance.addDate.value,
               description: Avance.description.value,
               observations: Avance.observations.value
-          }})}}>
+          }})
+          window.location.href = '/ListarAvances';
+          }}>
 
-        
+<div className="text-center justify-content-center align-items-center">
             <div>
                 <label className="p-3">Nombre Proyecto</label>
-                <input ref={project_id => Avance.project_id = project_id} placeholder="Nombre" />
+                <input ref={project_id => Avance.project_id = project_id} placeholder="Nombre" required />
             </div>
             <div>
                 <label className="p-3">Fecha</label>
-                <input type="date" ref={addDate => Avance.addDate = addDate} placeholder="Fecha" />
+                <input type="date" ref={addDate => Avance.addDate = addDate} placeholder="Fecha" required/>
             </div>
             <div>
                 <label className=" p-3">Descripción</label>
-                <input ref={description => Avance.description = description} placeholder="Descripción" />
+                <input ref={description => Avance.description = description} placeholder="Descripción" required/>
             </div>
             <div>
                 <label className=" p-3">Observaciones</label>
-                <input ref={observations => Avance.observations = observations} placeholder="Observaciones" />
+                <input ref={observations => Avance.observations = observations} placeholder="Observaciones" required/>
             </div>
         
         <br/>   
         <div className="text-center justify-content-center align-items-center">
-            <div><button className="bg-primary ml-4"type="submit">Registrar Avance</button></div>
+            <div><Button className="bg-primary ml-4"type="submit">Registrar Avance</Button></div>
             <div>
               <br/>
-            <Link to="./ListarAvances">
-                    <Button variant="warning">Volver</Button>
-                </Link>
+                    
               </div>
         </div>
+        
+        <br/>
+        </div>
         </form>
+      
         )
 }
 export default FormAvances;
